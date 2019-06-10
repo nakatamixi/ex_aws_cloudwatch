@@ -174,7 +174,7 @@ if Code.ensure_loaded?(SweetXml) do
           Regex.match?(~r/<#{key}/, xml)
         end)
         |> Enum.map(fn key ->
-          {Macro.underscore(key), ~x"./#{key}/text()"f}
+          {Macro.underscore(key) |> String.to_atom(), ~x"./#{key}/text()"f}
         end)
         |> Enum.reduce([], fn x, acc -> acc ++ [x] end)
 
